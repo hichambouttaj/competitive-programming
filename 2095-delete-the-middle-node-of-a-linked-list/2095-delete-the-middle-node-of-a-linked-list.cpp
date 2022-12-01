@@ -17,6 +17,7 @@ public:
             len++;
             cur = cur->next;
         }
+        if(len <= 1) return nullptr;
         
         int idx = len / 2;
         cur = head;
@@ -25,8 +26,6 @@ public:
         }
         
         ListNode *tmp = cur->next;
-        if(tmp == nullptr)
-            return nullptr;
         cur->next = tmp->next;
         delete tmp;
         return head;
