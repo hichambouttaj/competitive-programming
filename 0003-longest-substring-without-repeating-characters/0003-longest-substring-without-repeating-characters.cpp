@@ -11,10 +11,7 @@ public:
             if(my_map.count(s[end]) && start <= my_map[s[end]]) {
                 start = my_map[s[end]] + 1;
             }
-            if(start > end)
-                start = end;
             max_length = std::max(max_length, end - start + 1);
-            cout<< "max_length = "<< max_length<< " start = "<< start<< " end = "<< end<< "\n";
             my_map[s[end]] = end;
         }
         
