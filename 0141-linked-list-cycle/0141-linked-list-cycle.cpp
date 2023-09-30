@@ -12,10 +12,10 @@ public:
         ListNode *first = head;
         ListNode *second = head;
         
-        while(first && second && second->next){
+        while(second && second->next){
             second = second->next->next;
-            if(first == second) return true;
             first = first->next;
+            if(first == second) return true;
         }
         return false;
     }
