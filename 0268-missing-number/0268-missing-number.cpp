@@ -2,13 +2,12 @@ class Solution {
 public:
     int missingNumber(vector<int>& nums) {
         int n = (int)nums.size();
-        
-        int sum_range = (n * (n + 1)) / 2;
+        int sum = n;
         
         for(int i = 0; i < n; i++) {
-            sum_range -= nums[i];
+            sum += (i - nums[i]);
         }
         
-        return sum_range;        
+        return sum;        
     }
 };
