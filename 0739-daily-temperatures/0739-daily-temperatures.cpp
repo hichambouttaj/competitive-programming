@@ -6,8 +6,9 @@ public:
 
         for(int i = 0; i < sz; i++) {
             while(!st.empty() && temperatures[st.top()] < temperatures[i]) {
-                temperatures[st.top()] = i - st.top();
+                int idx = st.top();
                 st.pop();
+                temperatures[idx] = i - idx;
             } 
             st.push(i);
         }
