@@ -1,7 +1,7 @@
 class LargestComparator {
 public:
     bool operator() (int a, int b) {
-        return a < b;
+        return a > b;
     }  
 };
 
@@ -12,12 +12,12 @@ public:
         priority_queue<int, vector<int>, LargestComparator> pr;
         
         for(int i = 0; i < sz; i++) {
-            pr.push(nums[i]);
-        }
-        
-        while(!pr.empty() && k > 1) {
-            pr.pop();
-            k--;
+            if((int)pr.size() <= k || nums[i] > pr.top()) {
+                pr.push(nums[i]);
+                
+                if((int)pr.size() > k)
+                    pr.pop();
+            }
         }
         
         return pr.top();        
