@@ -19,6 +19,6 @@ public:
             }
         }
                 
-        return static_cast<int>(floor(end));
+        return floor(end);
     }
 };
