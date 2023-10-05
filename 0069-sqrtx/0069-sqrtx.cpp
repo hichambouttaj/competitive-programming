@@ -12,7 +12,10 @@ public:
             double mid = (end + start) / 2;
             double square = mid * mid;
 
-            if(square >= x) {
+            if(square == x)
+                return mid;
+            
+            if(square > x) {
                 end = mid;
             }else {
                 start = mid;
