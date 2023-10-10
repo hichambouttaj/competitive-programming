@@ -13,15 +13,6 @@ public:
         }
         
         for(int i = 0; i < n; i++) {
-            cout<< left_sum[i]<< " ";
-        }
-
-        cout<< "\n";
-        for(int i = 0; i < n; i++) {
-            cout<< right_sum[i]<< " ";
-        }
-        
-        for(int i = 0; i < n; i++) {
             nums[i] = abs(left_sum[i] - right_sum[i]);
         }
         return nums;
