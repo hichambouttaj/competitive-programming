@@ -10,34 +10,25 @@
  * };
  */
 class Solution {
+private:
+    vector<int> rs;
+    
+    void rightSideView(TreeNode* node, int level) {
+        if(node == nullptr)
+            return;
+        
+        if(level == (int)rs.size())
+            rs.push_back(node->val);
+        
+        rightSideView(node->right, level + 1);
+        rightSideView(node->left, level + 1);
+        
+    } 
+    
 public:
     vector<int> rightSideView(TreeNode* root) {
-        if(root == nullptr)
-            return {};
-
-        vector<int> rs;
-        queue<TreeNode*> q;
+        rightSideView(root, 0);
         
-        q.push(root);
-        
-        while(!q.empty()) {
-            int sz = (int)q.size();
-            
-            for(int i = 0; i < sz; i++) {
-                TreeNode *current = q.front();
-                q.pop();
-                
-                if(i == sz - 1) {
-                    rs.push_back(current->val);
-                }
-                
-                if(current->left != nullptr)
-                    q.push(current->left);
-                if(current->right != nullptr)
-                    q.push(current->right);
-            }
-        }
-     
         return rs;
     }
 };
