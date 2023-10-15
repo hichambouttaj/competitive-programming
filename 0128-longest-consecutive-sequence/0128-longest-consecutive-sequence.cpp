@@ -1,22 +1,20 @@
-typedef unordered_map<int, vector<int>> GRAPH;
+typedef map<int, vector<int>> GRAPH;
 
 class Solution {
 private:
     void create_edge(GRAPH &graph, int from, int to) {
         graph[from].push_back(to);
-        graph[to].push_back(from);
     }
     
-    int dfs(GRAPH &graph, int node, unordered_set<int> &visited) {
-        visited.insert(node);
+    int dfs(GRAPH &graph, int node) {
+        int length = 1;
         
-        for(int neighbour : graph[node]) {
-            if(!visited.count(neighbour)) {
-                return 1 + dfs(graph, neighbour, visited);
-            }
+        while((int)graph[node].size() > 0) {
+            node = graph[node][0];
+            length++;
         }
         
-        return 1;
+        return length;
     }
     
 public:
@@ -30,18 +28,16 @@ public:
         GRAPH graph;
         
         for(int num : us) {
-            int next = num + 1;
-            if(us.count(next)) {
-                create_edge(graph, num, next);
+            if(us.count(num + 1)) {
+                create_edge(graph, num, num + 1);
             }
         }
         
         int max_cc_length = 1;
-        unordered_set<int> visited;
         
         for(auto &node : graph) {
-            if(!visited.count(node.first) && node.second.size() == 1) {
-                int current_cc_length = dfs(graph, node.first, visited);
+            if(!us.count(node.first - 1)) {
+                int current_cc_length = dfs(graph, node.first);
                 max_cc_length = std::max(max_cc_length, current_cc_length);
             }
         }
