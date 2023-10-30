@@ -1,21 +1,19 @@
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(string s) {
-        unordered_map<string, int> m;
+        unordered_set<string> memo;
+        unordered_set<string> rs;
         int n = (int)s.size();
         
-        for(int i = 0; i < n - 9; i++) {
-            m[s.substr(i, 10)]++;
+        for(int i = 0; i <= n - 10; i++) {
+            string sub = s.substr(i, 10);
+            if(memo.count(sub) && !rs.count(sub)) {
+                rs.insert(sub);
+            }else {
+                memo.insert(sub);
+            }
         } 
         
-        vector<string> rs;
-        
-        for(const pair<string, int> &p : m) {
-            if(p.second > 1) {
-                rs.push_back(p.first);
-            }
-        }
-        
-        return rs;
+        return {rs.begin(), rs.end()};
     }
 };
