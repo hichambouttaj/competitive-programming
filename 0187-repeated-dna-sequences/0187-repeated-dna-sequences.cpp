@@ -7,7 +7,7 @@ public:
         
         for(int i = 0; i <= n - 10; i++) {
             string sub = s.substr(i, 10);
-            if(memo.count(sub) && !rs.count(sub)) {
+            if(memo.count(sub)) {
                 rs.insert(sub);
             }else {
                 memo.insert(sub);
