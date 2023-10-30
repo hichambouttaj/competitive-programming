@@ -1,6 +1,9 @@
 class Solution {
 public:
     int reverse(int x) {
+        if(x == INT_MAX || x == INT_MIN)
+            return 0;
+
         int limit_min = INT_MIN / 10;
         int limit_max = INT_MAX / 10;
         
