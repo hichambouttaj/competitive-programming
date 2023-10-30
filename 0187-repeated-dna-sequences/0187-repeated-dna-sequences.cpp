@@ -4,7 +4,7 @@ public:
         unordered_map<string, int> m;
         int n = (int)s.size();
         
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i < n - 9; i++) {
             m[s.substr(i, 10)]++;
         } 
         
