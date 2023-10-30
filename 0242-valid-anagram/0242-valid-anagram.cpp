@@ -1,22 +1,26 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {    
-        
         if(s.size() != t.size()) return false;
         
-        unordered_map<char, int> arr;
-        for(int i = 0; i < s.size(); i++){
-            arr[s[i]]++;
+        int arr[27];
+        memset(arr, 0, sizeof(arr));
+        
+        for(int i = 0; i < (int)s.size(); i++) {
+            arr[s[i] - 'a']++;
         }
         
-        for(int i = 0; i < t.size(); i++){
-            if(arr.find(t[i]) == arr.end()) return false;
-            arr[t[i]]--;
-            if(arr[t[i]] == 0){
-                arr.erase(t[i]);
-            }
-            
+        for(int i = 0; i < (int)t.size(); i++) {
+            if(arr[t[i] - 'a'] == 0)
+                return false;
+            arr[t[i] - 'a']--;
         }
-        return arr.empty();
+        
+        for(int i = 0; i < 27; i++) {
+            if(arr[i] != 0)
+                return false;
+        }
+        
+        return true;
     }
 };
