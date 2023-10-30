@@ -3,7 +3,7 @@ public:
     bool isAnagram(string s, string t) {    
         if(s.size() != t.size()) return false;
         
-        int arr[27];
+        int arr[26];
         memset(arr, 0, sizeof(arr));
         
         for(int i = 0; i < (int)s.size(); i++) {
@@ -16,7 +16,7 @@ public:
             arr[t[i] - 'a']--;
         }
         
-        for(int i = 0; i < 27; i++) {
+        for(int i = 0; i < 26; i++) {
             if(arr[i] != 0)
                 return false;
         }
