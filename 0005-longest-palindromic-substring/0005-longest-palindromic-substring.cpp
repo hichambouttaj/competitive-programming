@@ -1,44 +1,30 @@
 class Solution {
-    string str;
-    int dp[1001][1001];
-    
-    int isPalindrome(int i, int j) {
-        if(i >= j)
-            return 1;
+private:
+    int start = 0;
+    int end = 0;
+    void expand_around_center(string &s, int left, int right) {
+        while(left >= 0 && right < (int)s.size() && s[left] == s[right]) {
+            left--;
+            right++;
+        }
+        left++;
+        right--;
         
-        int &ref = dp[i][j];
-        
-        if(ref != -1)
-            return ref;
-        
-        if(str[i] == str[j])
-            return ref = isPalindrome(i + 1, j - 1);
-        
-        return ref = 0;
+        if((end - start) < (right - left)) {
+            start = left;
+            end = right;
+        }
     }
 public:
     string longestPalindrome(string s) {
-        str = s;
         int n = (int)s.size();
-        memset(dp, -1, sizeof(dp));
-
-        int length = 0;
-        int start = -1;
         
+        // use expand arround center alogrithm
         for(int i = 0; i < n; i++) {
-            for(int j = i; j < n; j++) {
-                int sub_len = j - i + 1;
-                if(isPalindrome(i, j) && sub_len > length) {
-                    length = sub_len;
-                    start = i;
-                }
-            }
+            expand_around_center(s, i, i);
+            expand_around_center(s, i, i + 1);
         }
         
-        
-        if(start == -1)
-            return "";
-        
-        return s.substr(start, length);
+        return s.substr(start, end - start + 1);
     }
 };
