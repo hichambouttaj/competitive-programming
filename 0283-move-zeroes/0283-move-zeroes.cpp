@@ -3,6 +3,9 @@ public:
     void moveZeroes(vector<int>& nums) {
         int n = (int)nums.size();
         
+        if(n == 1)
+            return;
+        
         int left = 0;
         int right = 0;
         
