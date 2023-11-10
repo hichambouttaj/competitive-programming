@@ -9,12 +9,9 @@ public:
         }
         
         for(int i = 0; i < ransomNote.size(); i++) {
-            alphabet[ransomNote[i] - 97]--;
-        }
-        
-        for(int i = 0; i < 26; i++) {
-            if(alphabet[i] < 0)
+            if(alphabet[ransomNote[i] - 97] == 0)
                 return false;
+            alphabet[ransomNote[i] - 97]--;
         }
         
         return true;
