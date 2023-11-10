@@ -7,12 +7,12 @@ public:
         
         int left = 0, right = 1, profit = 0;
         
-        while(right < n) {
-            if(prices[right] > prices[left])
+        for(; right < n; right++) {
+            if(prices[right] > prices[left]) {
                 profit = std::max(profit, prices[right] - prices[left]);
-            else
+            }else {
                 left = right;
-            right++;
+            }
         }
         
         return profit;
